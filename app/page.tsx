@@ -13,6 +13,7 @@ import { UrgencySection } from '@/components/urgency-section'
 import { BookingSection } from '@/components/booking-section'
 import { FAQAccordion } from '@/components/faq-accordion'
 import { Footer } from '@/components/footer'
+import { AboutJason } from '@/components/about-jason'
 import { AssessmentModal } from '@/components/assessment-modal'
 
 export default function Home() {
@@ -65,6 +66,9 @@ export default function Home() {
       {/* 7. CTA & CHECKOUT */}
       <CTAButton onClick={handleOpenModal} />
       <BookingSection isVisible={showBooking} />
+
+      {/* ABOUT JASON */}
+      <AboutJason />
 
       <FAQAccordion />
       <Footer />
