@@ -111,10 +111,11 @@ export function AssessmentModal({ isOpen, onClose, onSuccess }: AssessmentModalP
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          firstName: contact.firstName,
-          lastName: contact.lastName,
+          first_name: contact.firstName,
+          last_name: contact.lastName,
           phone: contact.phone,
           email: contact.email,
+          tags: 'rv-solar-funnel,quiz-started',
           source: 'RVsOffGrid Funnel',
         }),
       })
@@ -136,20 +137,43 @@ export function AssessmentModal({ isOpen, onClose, onSuccess }: AssessmentModalP
 
   // Push final answers to GHL on qualifier completion
   const handleQualifierComplete = async () => {
+    const rvTypeLabel = answers.rvType === 'other'
+      ? (answers.rvTypeOther || 'Other')
+      : rvTypeOptions.find(o => o.value === answers.rvType)?.label ?? answers.rvType
+
+    const goalLabel = goalOptions.find(o => o.value === answers.goal)?.label ?? answers.goal
+
+    const shopVisitLabel = answers.shopVisit === 'yes' ? 'Yes, no problem' : 'Not sure yet'
+    const budgetLabel = answers.budgetReady === 'yes' ? "Yes, ready to invest" : 'Needs to think about it'
+
+    const notes = [
+      `=== RV Solar Funnel — Quiz Results ===`,
+      `Submitted: ${new Date().toLocaleString('en-US', { timeZone: 'America/Chicago' })} (CST)`,
+      ``,
+      `RV Type:       ${rvTypeLabel}`,
+      `#1 Goal:       ${goalLabel}`,
+      `Can visit Burleson TX: ${shopVisitLabel}`,
+      `Budget ready:  ${budgetLabel}`,
+      ``,
+      `Source: RVsOffGrid Funnel`,
+    ].join('\n')
+
     try {
       await fetch(GHL_WEBHOOK_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
-          firstName: contact.firstName,
-          lastName: contact.lastName,
+          first_name: contact.firstName,
+          last_name: contact.lastName,
           phone: contact.phone,
           email: contact.email,
-          rv_type: answers.rvType === 'other' ? (answers.rvTypeOther || 'Other') : answers.rvType,
-          goal: answers.goal,
-          shop_visit: answers.shopVisit,
-          budget_ready: answers.budgetReady,
-          source: 'RVsOffGrid Funnel — Quiz Complete',
+          rv_type: rvTypeLabel,
+          goal: goalLabel,
+          can_visit_burleson: shopVisitLabel,
+          budget_ready: budgetLabel,
+          notes,
+          tags: 'rv-solar-funnel,quiz-complete',
+          source: 'RVsOffGrid Funnel',
         }),
       })
     } catch {
