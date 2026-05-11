@@ -105,24 +105,6 @@ export function AssessmentModal({ isOpen, onClose, onSuccess }: AssessmentModalP
       return
     }
 
-    setIsSubmitting(true)
-    try {
-      await fetch(GHL_WEBHOOK_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          first_name: contact.firstName,
-          last_name: contact.lastName,
-          phone: contact.phone,
-          email: contact.email,
-          tags: 'rv-solar-funnel,quiz-started',
-          source: 'RVsOffGrid Funnel',
-        }),
-      })
-    } catch {
-      // Non-blocking — proceed even if webhook fails
-    }
-
     window.dataLayer = window.dataLayer || []
     window.dataLayer.push({
       event: 'contact_captured',
@@ -131,7 +113,6 @@ export function AssessmentModal({ isOpen, onClose, onSuccess }: AssessmentModalP
       lead_email: contact.email,
     })
 
-    setIsSubmitting(false)
     setStep('rvType')
   }
 
@@ -314,10 +295,9 @@ export function AssessmentModal({ isOpen, onClose, onSuccess }: AssessmentModalP
 
                 <button
                   type="submit"
-                  disabled={isSubmitting}
-                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-4 px-8 rounded-xl transition-colors text-lg cursor-pointer disabled:opacity-70 mt-2"
+                  className="w-full bg-primary hover:bg-primary/90 text-primary-foreground font-semibold py-4 px-8 rounded-xl transition-colors text-lg cursor-pointer mt-2"
                 >
-                  {isSubmitting ? 'One sec...' : 'Start My Assessment →'}
+                  Start My Assessment →
                 </button>
                 <p className="text-xs text-center text-muted-foreground">
                   Your info is secure and will never be shared.
