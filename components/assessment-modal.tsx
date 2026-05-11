@@ -4,7 +4,7 @@ import { useEffect, useState, type FormEvent } from 'react'
 import { X, ChevronLeft, Check } from 'lucide-react'
 
 // ── Config ──────────────────────────────────────────────────────────────────
-const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/YOUR_WEBHOOK_ID/webhook-trigger/YOUR_TRIGGER_ID'
+const GHL_WEBHOOK_URL = 'https://services.leadconnectorhq.com/hooks/nvTDFkvOe2lKSzq3JWAo/webhook-trigger/20544e57-7bf9-4c72-add0-9aaf20515be1'
 const BOOKING_URL = 'https://links.monox.ai/widget/booking/TIPJcJk6n571COn8GUQa'
 
 // ── Types ────────────────────────────────────────────────────────────────────
