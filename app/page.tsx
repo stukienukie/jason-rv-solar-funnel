@@ -49,6 +49,9 @@ export default function Home() {
       {/* 3. PROBLEM / AGITATION */}
       <ProblemSection />
 
+      {/* RECENT INSTALLATIONS */}
+      <PhotoGrid />
+
       {/* 4. SOLUTION & OFFER */}
       <HowItWorks />
 
@@ -58,9 +61,6 @@ export default function Home() {
 
       {/* 6. URGENCY & SCARCITY */}
       <UrgencySection />
-
-      {/* RECENT INSTALLATIONS */}
-      <PhotoGrid />
 
       {/* 7. CTA & CHECKOUT */}
       <CTAButton onClick={handleOpenModal} />

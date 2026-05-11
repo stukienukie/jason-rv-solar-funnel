@@ -9,7 +9,6 @@ const photos = [
   '/gallery-6-C_v2jxDv.png',
   '/gallery-7-CNGYzqgz.png',
   '/gallery-8-C-4X7FKz.png',
-  '/gallery-9-m_21LPuv.png',
 ]
 
 export function PhotoGrid() {
