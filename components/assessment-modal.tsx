@@ -231,16 +231,29 @@ export function AssessmentModal({ isOpen, onClose, onSuccess }: AssessmentModalP
           {/* ── CONTACT (pre-req gate) ───────────────────────────────── */}
           {step === 'contact' && (
             <div>
-              <div className="text-center mb-6">
-                <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-primary text-sm font-medium mb-3">
-                  Free · No Commitment
+              {/* Jason intro hook */}
+              <div className="flex flex-col items-center text-center mb-6">
+                <div className="relative mb-4">
+                  <img
+                    src="https://rvsoffgrid.com/assets/jason-olivia-BtSE0MiI.avif"
+                    alt="Jason Orr"
+                    className="w-20 h-20 rounded-full object-cover object-top shadow-md border-2 border-primary/30"
+                  />
+                  <span className="absolute -bottom-1 -right-1 text-lg">⚡</span>
                 </div>
-                <h2 className="font-heading text-2xl text-foreground mb-1">
-                  {"Let's find your perfect solar setup"}
-                </h2>
-                <p className="text-muted-foreground text-sm">
-                  Enter your info to start the quiz — takes 60 seconds.
+                <p className="text-xs font-semibold uppercase tracking-widest text-primary mb-2">
+                  Before we connect you directly with Jason...
                 </p>
+                <h2 className="font-heading text-2xl text-foreground mb-2 leading-tight">
+                  Take this 60-second quiz to find your perfect solar setup
+                </h2>
+                <p className="text-muted-foreground text-sm max-w-xs">
+                  So when Jason calls, he already knows exactly what your RV needs — no guessing, no wasted time.
+                </p>
+              </div>
+
+              <div className="border-t border-border pt-5 mb-5">
+                <p className="text-xs text-center text-muted-foreground mb-4 font-medium">Enter your info to get started — free, no commitment</p>
               </div>
 
               <form onSubmit={handleContactSubmit} className={`space-y-3 ${isShaking ? 'animate-shake' : ''}`}>
