@@ -106,6 +106,20 @@ export function AssessmentModal({ isOpen, onClose, onSuccess }: AssessmentModalP
       return
     }
 
+    // Capture contact immediately — don't wait for quiz completion
+    fetch(GHL_WEBHOOK_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        first_name: contact.firstName,
+        last_name: contact.lastName,
+        phone: contact.phone,
+        email: contact.email,
+        tags: 'rv-solar-funnel,quiz-started',
+        source: 'RVsOffGrid Funnel',
+      }),
+    }).catch(() => {})
+
     window.dataLayer = window.dataLayer || []
     window.dataLayer.push({
       event: 'contact_captured',
