@@ -8,6 +8,8 @@ export function AboutJason() {
               src="https://rvsoffgrid.com/assets/jason-olivia-BtSE0MiI.avif"
               alt="Jason and Olivia Orr, owners of RVsOffGrid"
               className="w-44 h-44 rounded-2xl object-cover shadow-md"
+              loading="lazy"
+              decoding="async"
             />
           </div>
 

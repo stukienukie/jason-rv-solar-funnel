@@ -262,6 +262,8 @@ export function AssessmentModal({ isOpen, onClose, onSuccess }: AssessmentModalP
                     src="https://rvsoffgrid.com/assets/jason-olivia-BtSE0MiI.avif"
                     alt="Jason Orr"
                     className="w-20 h-20 rounded-full object-cover object-top shadow-md border-2 border-primary/30"
+                    loading="eager"
+                    decoding="async"
                   />
                   <span className="absolute -bottom-1 -right-1 text-lg">⚡</span>
                 </div>
