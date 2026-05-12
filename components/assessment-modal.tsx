@@ -50,6 +50,7 @@ const goalOptions = [
 declare global {
   interface Window {
     dataLayer: Record<string, unknown>[]
+    fbq: (...args: unknown[]) => void
   }
 }
 
@@ -112,6 +113,10 @@ export function AssessmentModal({ isOpen, onClose, onSuccess }: AssessmentModalP
       lead_phone: contact.phone,
       lead_email: contact.email,
     })
+
+    if (typeof window.fbq === 'function') {
+      window.fbq('track', 'Lead')
+    }
 
     setStep('rvType')
   }
